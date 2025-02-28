@@ -19,6 +19,7 @@ public class Employee {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String employeeId;
+
     String name;
     String phone;
     String email;
