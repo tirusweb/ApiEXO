@@ -2,6 +2,8 @@ package com.Exo_Web.Exo.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
@@ -21,7 +23,9 @@ public class Employee {
     String employeeId;
 
     String name;
+    @Pattern(regexp = "^[0-9]{10,11}$", message = "Invalid phone number")
     String phone;
+    @Email
     String email;
     String address;
     String description;
