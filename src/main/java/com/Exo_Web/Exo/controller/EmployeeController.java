@@ -13,9 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Slf4j
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE , makeFinal = true)
 public class EmployeeController {
