@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,32 +23,41 @@ import java.util.List;
 public class EmployeeController {
     EmployeeService employeeService;
 
-    @PostMapping
-    public ApiResponse<EmployeeResponse> createEmployee(@RequestBody @Valid EmployeeCreationRequest request) {
-        ApiResponse<EmployeeResponse> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(employeeService.createEmployeeRequest(request));
-        return apiResponse;
-    }
+//    @PostMapping
+//    public ApiResponse<EmployeeResponse> createEmployee(@RequestBody @Valid EmployeeCreationRequest request) {
+//        ApiResponse<EmployeeResponse> apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(employeeService.createEmployee(request));
+//        return apiResponse;
+//    }
 
     @GetMapping
     public ApiResponse<List<EmployeeResponse>> getAllEmployees() {
-        ApiResponse<List<EmployeeResponse>> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(employeeService.getAllEmployees());
-        return apiResponse;
+        return new ApiResponse<>(employeeService.getAllEmployees());
     }
 
+    // 🔍 Lấy Employee theo ID
+    @GetMapping("/{id}")
+    public ApiResponse<EmployeeResponse> getEmployeeById(@PathVariable String id) {
+        return new ApiResponse<>(employeeService.getEmployeeById(id));
+    }
+
+    // 🆕 Tạo mới Employee
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ApiResponse<EmployeeResponse> createEmployee(@RequestBody @Valid EmployeeCreationRequest request) {
+        return new ApiResponse<>(employeeService.createEmployee(request));
+    }
+
+    // 🆕 Cập nhật Employee
     @PutMapping("/{id}")
-    public ApiResponse<EmployeeResponse> updateEmployee(@PathVariable String id , @RequestBody @Valid EmployeeUpdateRequest request) {
-        ApiResponse<EmployeeResponse> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(employeeService.updateEmployee(request, id));
-        return apiResponse;
+    public ApiResponse<EmployeeResponse> updateEmployee(@PathVariable String id, @RequestBody @Valid EmployeeUpdateRequest request) {
+        return new ApiResponse<>(employeeService.updateEmployee(id, request));
     }
 
+    // ❌ Xóa Employee
     @DeleteMapping("/{id}")
     public ApiResponse<String> deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployee(id);
-        ApiResponse<String> apiResponse = new ApiResponse<>();
-        apiResponse.setResult("success");
-        return apiResponse;
+        return new ApiResponse<>("Deleted successfully");
     }
 }

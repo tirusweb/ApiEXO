@@ -1,21 +1,21 @@
-package com.Exo_Web.Exo.dto.request;
+package com.Exo_Web.Exo.dto.response;
+
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EmployeeUpdateRequest {
+public class CommentResponse {
+    String commentId;
     String name;
-    String phone;
-    String email;
-    String address;
-    String description;
+    String contentCmt;
+    LocalDate createdAt;
     LocalDate updatedAt;
+
 }

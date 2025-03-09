@@ -14,4 +14,10 @@ public class ApiResponse<T> {
     int code =  1000;
     String message;
     T result;
+
+    public ApiResponse(T result) {
+        this.result = result;
+        this.code = 1000; // Giá trị mặc định
+    }
+
 }

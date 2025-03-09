@@ -1,19 +1,13 @@
 package com.Exo_Web.Exo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -21,25 +15,23 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Employee {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String employeeId;
+    String commentId;
     @NotBlank(message = "Name cannot be null")
     String name;
-    @Pattern(regexp = "^[0-9]{10,11}$", message = "Invalid phone number")
-    String phone;
-    @Email
-    String email;
-    @NotBlank(message = "Address cannot be null")
-    String address;
-    @NotBlank(message = "Description cannot be null")
-    String description;
+    @NotBlank(message = "Content cannot be null")
+    String contentCmt;
     LocalDate createdAt;
     LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL , orphanRemoval = true)
-    List<Skill> skills = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "reviewId" , nullable = false)
+    @JsonIgnore
+    Review review;
 
     @PrePersist
     protected void onCreate() {
@@ -51,6 +43,4 @@ public class Employee {
     protected void onUpdate() {
         updatedAt = LocalDate.now();
     }
-
-
 }

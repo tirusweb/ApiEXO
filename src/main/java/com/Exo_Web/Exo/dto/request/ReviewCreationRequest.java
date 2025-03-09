@@ -1,12 +1,11 @@
 package com.Exo_Web.Exo.dto.request;
 
-import com.Exo_Web.Exo.entity.Skill;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -15,15 +14,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EmployeeCreationRequest {
-    String name;
-    String phone;
-    String email;
-    String address;
-    String description;
+public class ReviewCreationRequest {
+    String title;
+    String content;
+    String author;
     LocalDate createdAt;
     LocalDate updatedAt;
 
-    Set<@Valid SkillCreationRequest> skills;
+    Set<@Valid CommentCreationRequest> comments;
 
 }
