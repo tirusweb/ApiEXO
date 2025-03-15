@@ -3,6 +3,8 @@ package com.Exo_Web.Exo.controller;
 import com.Exo_Web.Exo.dto.request.*;
 import com.Exo_Web.Exo.dto.response.EmployeeResponse;
 import com.Exo_Web.Exo.dto.response.ReviewResponse;
+import com.Exo_Web.Exo.dto.response.SubMenuResponse;
+import com.Exo_Web.Exo.enums.ReviewType;
 import com.Exo_Web.Exo.service.EmployeeService;
 import com.Exo_Web.Exo.service.ReviewService;
 import jakarta.validation.Valid;
@@ -35,16 +37,22 @@ public class ReviewController {
         return new ApiResponse<>(reviewService.getAllReviews());
     }
 
-    @GetMapping("/{id}")
-    public ApiResponse<ReviewResponse> getReviewById(@PathVariable String id) {
-        return new ApiResponse<>(reviewService.getReviewById(id));
-    }
+//    @GetMapping("/{id}")
+//    public ApiResponse<ReviewResponse> getReviewById(@PathVariable String id) {
+//        return new ApiResponse<>(reviewService.getReviewById(id));
+//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<ReviewResponse> createReview(@RequestBody @Valid ReviewCreationRequest request) {
         return new ApiResponse<>(reviewService.createReview(request));
     }
+
+    @GetMapping("/{type}")
+    public ApiResponse<List<ReviewResponse>> getReviewByType(@PathVariable String type) {
+        return new ApiResponse<>(reviewService.getBlogByType(type));
+    }
+
 
     @PutMapping("/{id}")
     public ApiResponse<ReviewResponse> updateReview(@PathVariable String id, @RequestBody @Valid ReviewUpdateRequest request) {

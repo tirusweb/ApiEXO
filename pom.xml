@@ -60,6 +60,14 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>io.springfox</groupId>-->
+<!--			<artifactId>springfox-boot-starter</artifactId>-->
+<!--			<version>3.0.0</version>-->
+<!--		</dependency>-->
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -70,6 +78,7 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.5.Final</version> <!-- Kiểm tra phiên bản mới nhất -->
 		</dependency>
+
 
 		<!-- MapStruct Processor -->
 		<dependency>

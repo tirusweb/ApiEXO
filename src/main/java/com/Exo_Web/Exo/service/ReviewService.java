@@ -1,16 +1,10 @@
 package com.Exo_Web.Exo.service;
 
-import com.Exo_Web.Exo.dto.request.EmployeeCreationRequest;
-import com.Exo_Web.Exo.dto.request.EmployeeUpdateRequest;
 import com.Exo_Web.Exo.dto.request.ReviewCreationRequest;
 import com.Exo_Web.Exo.dto.request.ReviewUpdateRequest;
-import com.Exo_Web.Exo.dto.response.EmployeeResponse;
 import com.Exo_Web.Exo.dto.response.ReviewResponse;
-import com.Exo_Web.Exo.entity.Employee;
 import com.Exo_Web.Exo.entity.Review;
-import com.Exo_Web.Exo.mapper.EmployeeMapper;
 import com.Exo_Web.Exo.mapper.ReviewMapper;
-import com.Exo_Web.Exo.repository.EmployeeRepository;
 import com.Exo_Web.Exo.repository.ReviewRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +38,16 @@ public class ReviewService {
         return reviewMapper.toReviewResponse(review);
     }
 
+    public List<ReviewResponse> getBlogByType(String type) {
+        List<Review> reviews = reviewRepository.findAllByType(type);
+        if (reviews.isEmpty()) {
+            throw new RuntimeException("No submenu found for type: " + type);
+        }
+        return reviews.stream()
+                .map(reviewMapper::toReviewResponse)
+                .collect(Collectors.toList());
+    }
+
     public ReviewResponse createReview(ReviewCreationRequest request) {
         Review review = reviewMapper.toReview(request);
         review = reviewRepository.save(review);
@@ -58,6 +62,7 @@ public class ReviewService {
         reviewRepository.save(review);
         return reviewMapper.toReviewResponse(review);
     }
+
 
     public void deleteReview(String id) {
         Review review = reviewRepository.findById(id)

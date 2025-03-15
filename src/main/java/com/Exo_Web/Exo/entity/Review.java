@@ -1,6 +1,7 @@
 package com.Exo_Web.Exo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -27,6 +28,9 @@ public class Review {
     String content;
     @NotBlank(message = "Author cannot be null")
     String author;
+    @JsonProperty("type")
+    String type;
+    int quantity;
     LocalDate createdAt;
     LocalDate updatedAt;
 

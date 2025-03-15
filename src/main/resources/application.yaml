@@ -1,4 +1,3 @@
-
 server:
   port: 8080
   servlet:
@@ -6,10 +5,22 @@ server:
 
 spring:
   datasource:
-    url: "jdbc:mysql://localhost:3306/exo"
+    url: jdbc:mysql://localhost:3306/exo
     username: root
     password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

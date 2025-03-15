@@ -36,14 +36,11 @@ public class CommentService {
     ReviewRepository reviewRepository;
 
     public CommentResponse createComment(CommentCreationRequest request) {
-        // 🔍 Kiểm tra Employee có tồn tại không
         Review review = reviewRepository.findById(request.getReviewId())
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
 
-        // 🔄 Map request sang Skill entity
         Comment comment = commentMapper.toComment(request);
         comment.setReview(review);
-        // 💾 Lưu vào DB
         comment = commentRepository.save(comment);
 
         return commentMapper.toCommentResponse(comment);

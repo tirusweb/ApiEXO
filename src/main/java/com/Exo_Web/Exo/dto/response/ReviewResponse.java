@@ -17,6 +17,8 @@ public class ReviewResponse {
     String title;
     String content;
     String author;
+    String type;
+    int quantity;
     LocalDate createdAt;
     LocalDate updatedAt;
 
