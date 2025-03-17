@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE , makeFinal = true)
 public class EmployeeController {
@@ -29,7 +29,6 @@ public class EmployeeController {
 //        apiResponse.setResult(employeeService.createEmployee(request));
 //        return apiResponse;
 //    }
-
     @GetMapping
     public ApiResponse<List<EmployeeResponse>> getAllEmployees() {
         return new ApiResponse<>(employeeService.getAllEmployees());
