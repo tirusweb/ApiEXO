@@ -5,21 +5,27 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://root:ZyZZWJCKpIobyLSbyKppHdnOsuKMAoCD@gondola.proxy.rlwy.net:56298/railway
+    url: jdbc:mysql://localhost:3306/exo
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: ZyZZWJCKpIobyLSbyKppHdnOsuKMAoCD
+    password: root
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
-#springdoc:
-#  api-docs:
-#    enabled: true
-#  swagger-ui:
-#    enabled: true
-#    path: /swagger-ui.html
-#  show-actuator: true
+endpoints:
+  cors:
+    allowed-credentials: false
+    allowed-headers: "*"
+    allowed-methods:
+      - POST
+      - PUT
+      - GET
+      - OPTIONS
+      - DELETE
+    max-age: 36000
+    allowed-origins: "*"
+
 

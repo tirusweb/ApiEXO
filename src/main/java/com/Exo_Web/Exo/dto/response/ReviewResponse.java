@@ -16,6 +16,8 @@ public class ReviewResponse {
     String reviewId;
     String title;
     String content;
+    String description;
+    String image;
     String author;
     String type;
     int quantity;

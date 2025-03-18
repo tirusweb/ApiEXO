@@ -16,6 +16,8 @@ import java.util.Set;
 public class ReviewUpdateRequest {
     String title;
     String content;
+    String description;
+    String image;
     String author;
     String type;
     int quantity;

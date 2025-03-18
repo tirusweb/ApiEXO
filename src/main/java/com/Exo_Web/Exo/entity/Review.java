@@ -26,6 +26,8 @@ public class Review {
     String title;
     @NotBlank(message = "Content cannot be null")
     String content;
+    String description;
+    String image;
     @NotBlank(message = "Author cannot be null")
     String author;
     @JsonProperty("type")
